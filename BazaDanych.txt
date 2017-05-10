@@ -1,0 +1,5 @@
+001 mleko 2.19
+002 maslo 3.47
+003 chlep 1.00
+004 bulka 0.20
+005 papierosy 14.99
