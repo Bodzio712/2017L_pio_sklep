@@ -6,40 +6,36 @@
 #include <conio.h>
 #include <string.h>
 
-void WypiszProdukt(char *kod);
-int Paragon();
+void WypiszProdukt(int kod);
 
-int main(){
-    int i = Paragon();
-}
-
-void WypiszProdukt(char *kod){
+void WypiszProdukt(int kod){
     FILE * dane = fopen("BazaDanych.txt","r");
 
-    char kodzik[3], *nazwa;
-    double cena;
-    while (fscanf(dane, "%s %s %d", &kodzik, &nazwa, &cena) != EOF){
-        if ( strcmp(kodzik,kod)==0){
-            printf("%s %s %f", *kodzik, *nazwa, cena);
-            break;
+    int kodzik;
+    char nazwa[100];
+    float cena;
+    printf("checkpoint1\n");
+    while (fscanf(dane, "%d %s %f", &kodzik, &nazwa[0], &cena) != EOF){
+        printf("checkpoint1,5\n");
+        if (kodzik==kod){
+            printf("checkpoint2\n");
+            printf("%d %s %f", kodzik, nazwa, cena);
         }
+        else printf("cos nie pyklo");
     }
 }
 
-int Paragon(){
+void Paragon(){
 
     FILE * baza = fopen("BazaDanych.txt","r");
     //char * nazwaParagonu = "0012.txt";
-    FILE * paragon = fopen("0012.txt","w");
-    char fc;
-    char kod[3];
+    //FILE * paragon = fopen("0012.txt","w");
+    int kod;
 
-    while(getch() != 27){
-        //kod[0] = fc;
-        kod[1] = (char)getch();
-        kod[2] = (char)getch();
+    while(getch() != 27) {
+        printf("Wpisz kod produktu:\n");
+        scanf("%d", &kod);
         printf("\n");
         WypiszProdukt(kod);
     }
-    return 0;
 }
