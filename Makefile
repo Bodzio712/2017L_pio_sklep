@@ -5,4 +5,4 @@ main.o: main.c
 	gcc -c main.c
 
 paragon.o: paragon.c
-    gcc -c paragon.c paragon.h
+	gcc -c paragon.c paragon.h

@@ -3,7 +3,7 @@
 //
 
 #include <stdio.h>
-#include <conio.h>
+#include <ncurses.h>
 
 float WypiszProdukt(int kod);
 
