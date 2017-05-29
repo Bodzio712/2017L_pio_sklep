@@ -3,7 +3,8 @@
 //
 
 #include <stdio.h>
-#include <ncurses.h>
+#include <conio.h>
+#include <windows.h>
 
 float WypiszProdukt(int kod);
 
@@ -15,15 +16,19 @@ float WypiszProdukt(int kod){
     float cena;
     while (fscanf(dane, "%s %d %f", &nazwa, &kodzik, &cena) != EOF){
         if (kod==kodzik) {
-            printf("%d %s %.2f\n", kodzik, nazwa, cena);
+            printf("%d ", kodzik);
+            printf("%s ", nazwa);
+            printf("%.2f\n", cena);
             return cena;
         }
     }
+    printf("Tego produktu nie ma w bazie!\n");
+    return 0;
 }
 
 void Paragon(){
 
-    FILE * baza = fopen("BazaDanych.txt","r");
+    //FILE * baza = fopen("BazaDanych.txt","r");
     //char * nazwaParagonu = "0012.txt";
     //FILE * paragon = fopen("0012.txt","w");
     int kod, ilosc;
@@ -31,16 +36,24 @@ void Paragon(){
     float suma = 0;
     float zaplata;
 
-    while(getch() != 27) {
+    while(getch() != 122) {
         printf("Wpisz kod produktui jego ilosc:\n");
         scanf("%d %d", &kod, &ilosc);
-        printf("\n");
         cena = WypiszProdukt(kod) * ilosc;
+        printf("%.2f\n",cena);
         suma += cena;
     }
-    printf("Do zaplaty: %f\n", suma);
+    printf("Do zaplaty: %.2f zlotych\n", suma);
     printf("Zaplacono:");
-    scanf("%f", &zaplata);
-    printf("\nReszta: %f\n",zaplata - suma);
-    return;
+    while(1<2) {
+        scanf("%f", &zaplata);
+        if (zaplata >= suma) {
+            printf("\nReszta: %.2f zlotych\n", zaplata - suma);
+            getch();
+            return;
+        } else {
+            printf("Zaplacono zbyt malo\nBrakuje %.2f zlotych\n", -1 * (zaplata - suma));
+            suma = suma - zaplata;
+        }
+    }
 }

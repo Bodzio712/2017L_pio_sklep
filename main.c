@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <ncurses.h>
+#include <windows.h>
+#include <conio.h>
 
 #include "paragon.h"
 
@@ -14,17 +13,18 @@ int main (int argc, char ** argv) {
 
 void menu(){
     char znak;
-    printf("Menu glowne:\n\n"
-                   "Wybierz:\n"
-                   "1 - wystawienie paragonu\n"
-                   "ESC - wyjscie z programu\n");
-    znak = getch();
-    if (znak == 49) {
-        printf("Wchodzisz w menu paragonu\n");
-        Paragon();
+    while (1<2) {
+        printf("Menu glowne:\n\n"
+                       "Wybierz:\n"
+                       "1 - wystawienie paragonu\n"
+                       "z - wyjscie z programu\n");
+        znak = getch();
+        if (znak == 49) {
+            printf("Wchodzisz w menu paragonu\n");
+            Paragon();
+        } else if (znak == 122)
+            return;
+        else printf("Bledna komenda\n");
     }
-    else if(znak == 27)
-        return;
-    else printf("Bledna komenda\n");
     Sleep(5000);
 }
