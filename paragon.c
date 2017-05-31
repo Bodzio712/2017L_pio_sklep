@@ -29,8 +29,6 @@ float WypiszProdukt(FILE * paragon, int kod){
 
 void Paragon(){
 
-    //char * nazwaParagonu = "0012.txt";
-    FILE * paragon = fopen("0012.txt","w");
     int kod, ilosc;
     float cena;
     float suma = 0;
@@ -44,6 +42,9 @@ void Paragon(){
     data = localtime( & czas );
 
     strftime( godzina, 80, "%c", data );
+
+    FILE * paragon = fopen("paragony.txt","a");
+    printf("%s\n", godzina);
     fprintf(paragon, "%s\n", godzina);
     fprintf(paragon, "%15s  Cena/jedn Ilosc    Cena\n", "Nazwa");
     while(getch() != 27) {
@@ -55,7 +56,7 @@ void Paragon(){
             fprintf(paragon, "%6d\t%8.2f\n", ilosc, cena);
         suma += cena;
     }
-    fprintf(paragon, "SUMA: %.2f\n", suma);
+    fprintf(paragon, "SUMA: %.2f\n\n\n\n", suma);
     printf("Do zaplaty: %.2f zlotych\n", suma);
     printf("Zaplacono:");
     while(1<2) {
